@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+#mystuff
+
+local_settings.py
