@@ -11,7 +11,13 @@ from rest_framework import serializers, status
 class CommentList(APIView):
 
     def get(self, request):
-        comment = Comment.objects.all()
+        ##Modified this get request to received a get request with and without video_id
+        video_id_param = request.query_params.get('video_id')
+        if video_id_param == None:
+            comment = Comment.objects.all()
+        else:
+            comment = Comment.objects.filter(video_id=video_id_param)
+        
         serializer = CommentSerializer(comment, many=True)
         return Response(serializer.data)
 
